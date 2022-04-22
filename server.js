@@ -5,6 +5,7 @@ const app = express();
 
 const fs = require("fs");
 const path = require("path");
+app.use(express.static('public'))
 
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
@@ -121,6 +122,24 @@ app.post("/api/animals", (req, res) => {
     }
 })
 
+app.get('/', (req, res) => {
+    // the path method ensures that it will work in any server environment
+    res.sendFile(path.join(__dirname, './public/index.html'))
+})
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'))
+})
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'))
+})
+
+
+
+// should be the last get requests so that it does not take precendence over other routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/index.html"))
+})
+// this should always be last
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
 });
