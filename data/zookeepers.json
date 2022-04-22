@@ -65,6 +65,12 @@
       "age": 25,
       "favoriteAnimal": "Horse",
       "id": "10"
+    },
+    {
+      "name": "Simrin",
+      "age": 26,
+      "favoriteAnimal": "None",
+      "id": "11"
     }
   ]
 }
